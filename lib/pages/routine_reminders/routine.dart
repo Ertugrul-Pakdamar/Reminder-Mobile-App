@@ -31,7 +31,7 @@ class Routine{
   }
 
   Routine.fromObject(dynamic o) {
-    this.id = int.tryParse(o["id"]);
+    this.id = int.tryParse(o["id"].toString())!;
     this.title = o["title"];
     this.description = o["description"];
   }

@@ -15,10 +15,7 @@ class RoutineRemindersPageState extends State {
 
   @override
   void initState() {
-    var productsFuture = routinesDb.getRoutines();
-    productsFuture.then((value) {
-      this._routines = value;
-    });
+    getRoutines();
   }
 
   @override
@@ -62,11 +59,12 @@ class RoutineRemindersPageState extends State {
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll<Color>(Colors.amberAccent.shade200),
+          backgroundColor:
+              MaterialStatePropertyAll<Color>(Colors.amberAccent.shade200),
         ),
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext) => RoutinePage(_routines[index])));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext) => RoutinePage(_routines[index])));
         },
         child: Expanded(
           child: Container(
@@ -96,9 +94,10 @@ class RoutineRemindersPageState extends State {
                   ),
                   Expanded(child: SizedBox()),
                   IconButton(
-                    onPressed: () {setState(() {
-                      _routines.removeAt(index);
-                    });},
+                    onPressed: () {
+                      routinesDb.delete(_routines[index].id!);
+                      getRoutines();
+                    },
                     icon: Icon(Icons.delete),
                   ),
                 ],
@@ -111,12 +110,19 @@ class RoutineRemindersPageState extends State {
   }
 
   createNewRoutine() async {
-    Routine newRoutine = await Navigator.push(context,
+    bool result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext) => CreateNewRoutine()));
-    setState(() {
-      routinesDb.insert(newRoutine);
-      var productsFuture = routinesDb.getRoutines();
-      productsFuture.then((value) {
+    if(result!=null) {
+      if(result) {
+        getRoutines();
+      }
+    }
+  }
+
+  getRoutines() async {
+    var productsFuture = routinesDb.getRoutines();
+    productsFuture.then((value) {
+      setState(() {
         this._routines = value;
       });
     });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reminder_app/pages/routine_reminders/routine.dart';
 import 'package:reminder_app/pages/routine_reminders/routine_reminders_page.dart';
+import 'package:reminder_app/pages/routine_reminders/routines_database.dart';
 
 class CreateNewRoutine extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class CreateNewRoutine extends StatefulWidget {
 }
 
 class CreateNewRoutineState extends State {
+  RoutinesDatabase routinesDb = RoutinesDatabase();
   Routine newRoutine = Routine();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -18,10 +20,12 @@ class CreateNewRoutineState extends State {
       appBar:
           AppBar(title: Text("New Routine"), backgroundColor: Colors.lightBlue),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           newRoutine.title = titleController.text;
           newRoutine.description = descriptionController.text;
-          Navigator.pop(context, newRoutine);
+          var result = await routinesDb.insert(
+              Routine.withoutId(titleController.text, descriptionController.text));
+          Navigator.pop(context, true);
         },
         backgroundColor: Colors.amberAccent,
         child: Icon(Icons.save),
