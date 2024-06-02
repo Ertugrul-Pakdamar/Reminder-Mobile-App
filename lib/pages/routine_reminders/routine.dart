@@ -19,9 +19,20 @@ class Routine{
     this.title = title;
   }
 
-  Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "description": description,
-  };
+  Map<String, dynamic> toMap() {
+    var map = Map<String, dynamic>();
+    map["id"] = id;
+    map["title"] = title;
+    map["description"] = description;
+    if(id!=null){
+      map["id"] = id;
+    }
+    return map;
+  }
+
+  Routine.fromObject(dynamic o) {
+    this.id = int.tryParse(o["id"]);
+    this.title = o["title"];
+    this.description = o["description"];
+  }
 }

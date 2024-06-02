@@ -1,44 +1,53 @@
+import 'dart:async';
+
 import 'package:reminder_app/pages/routine_reminders/routine.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class RoutinesDatabase {
-  Database? database;
+  Database? _db;
 
-  createDatabase() async {
-    String databasesPath = await getDatabasesPath();
-    String dbPath = join(databasesPath, 'my.db');
-
-    database = await openDatabase(dbPath, version: 1, onCreate: populateDb);
-    return database;
+  Future<Database?> get db async {
+    if(_db==null) {
+      _db = await initializeDb();
+    }
+    return _db;
   }
 
-  void populateDb(Database database, int version) async {
-    await database.execute("CREATE TABLE Routines ("
-        "id INTEGER PRIMARYKEY,"
-        "title TEXT,"
-        "description TEXT,"
-        ")");
+  Future<Database?> initializeDb() async {
+    String dbPath = join(await getDatabasesPath(), 'routines.db');
+    Future<Database> routinesDb = openDatabase(dbPath, version: 1, onCreate: createDb);
+
+    return routinesDb;
   }
 
-  Future<int?> createRoutine(Routine routine) async {
-    var result = await database?.insert("Routines", routine.toMap());
+  void createDb(Database db, int version) async {
+    await db.execute(
+        "CREATE TABLE Routines(id INTEGER PRIMARY KEY, title TEXT, description TEXT)");
+  }
+
+  Future<List<Routine>> getRoutines() async {
+    Database? db = await this.db;
+    var result = await db?.query("Routines");
+    return List.generate(result!.length, (i){
+      return Routine.fromObject(result?[i]);
+    });
+  }
+
+  Future<int?> insert(Routine routine) async {
+    Database? db = await this.db;
+    var result = await db?.insert("Routines", routine.toMap());
+  }
+
+  Future<int?> delete(int id) async {
+    Database? db = await this.db;
+    var result = await db?.rawDelete("delete from Routines where id=$id");
     return result;
   }
 
-  Future<List> getRoutines() async {
-    var result = await database
-        ?.query("Routines", columns: ["id", "title", "description"]);
-
-    return result!.toList();
-  }
-
-  Future<int?> updateRoutines(Routine routine) async {
-    return await database?.update("Routines", routine.toMap(),
-        where: "id = ?", whereArgs: [routine.id]);
-  }
-
-  Future<int?> deleteRoutines(int id) async {
-    return await database?.delete("Routines", where: 'id = ?', whereArgs: [id]);
+  Future<int?> update(Routine routine) async {
+    Database? db = await this.db;
+    var result = await db?.update("Routines", routine.toMap(), where: "id=?", whereArgs: [routine.id]);
+    return result;
   }
 }

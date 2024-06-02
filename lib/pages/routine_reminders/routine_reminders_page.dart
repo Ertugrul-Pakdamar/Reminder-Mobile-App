@@ -10,14 +10,19 @@ class RoutineRemindersPage extends StatefulWidget {
 }
 
 class RoutineRemindersPageState extends State {
-  int currentPageIndex = 0;
+  RoutinesDatabase routinesDb = RoutinesDatabase();
   List<Routine> _routines = [];
 
   @override
-  Widget build(BuildContext context) {
-    setState(() {
-      _routines.add(getRoutinesFromDatabase());
+  void initState() {
+    var productsFuture = routinesDb.getRoutines();
+    productsFuture.then((value) {
+      this._routines = value;
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Routine Reminders"),
@@ -28,7 +33,7 @@ class RoutineRemindersPageState extends State {
         child: Icon(Icons.add),
         backgroundColor: Colors.amberAccent,
       ),
-      body: Row(
+      body: Column(
         children: [
           Expanded(
             child: SizedBox(
@@ -65,7 +70,6 @@ class RoutineRemindersPageState extends State {
         },
         child: Expanded(
           child: Container(
-            height: 100,
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
             padding: EdgeInsets.only(left: 15, top: 10),
@@ -95,7 +99,7 @@ class RoutineRemindersPageState extends State {
                     onPressed: () {setState(() {
                       _routines.removeAt(index);
                     });},
-                      icon: Icon(Icons.delete),
+                    icon: Icon(Icons.delete),
                   ),
                 ],
               ),
@@ -110,20 +114,11 @@ class RoutineRemindersPageState extends State {
     Routine newRoutine = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext) => CreateNewRoutine()));
     setState(() {
-      _routines.add(newRoutine);
-      RoutinesDatabase().updateRoutines(newRoutine);
+      routinesDb.insert(newRoutine);
+      var productsFuture = routinesDb.getRoutines();
+      productsFuture.then((value) {
+        this._routines = value;
+      });
     });
-  }
-
-  getRoutinesFromDatabase() {
-    if(RoutinesDatabase().database == null) {
-      RoutinesDatabase().createDatabase();
-      Future<List> dbRoutines = RoutinesDatabase().getRoutines();
-      return dbRoutines;
-    }
-    else {
-      Future<List> dbRoutines = RoutinesDatabase().getRoutines();
-      return dbRoutines;
-    }
   }
 }
