@@ -15,6 +15,9 @@ class RoutineRemindersPageState extends State {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _routines.add(getRoutinesFromDatabase());
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text("Routine Reminders"),
@@ -108,10 +111,19 @@ class RoutineRemindersPageState extends State {
         MaterialPageRoute(builder: (BuildContext) => CreateNewRoutine()));
     setState(() {
       _routines.add(newRoutine);
+      RoutinesDatabase().updateRoutines(newRoutine);
     });
   }
 
-  getRoutinesFromDatabase() async {
-
+  getRoutinesFromDatabase() {
+    if(RoutinesDatabase().database == null) {
+      RoutinesDatabase().createDatabase();
+      Future<List> dbRoutines = RoutinesDatabase().getRoutines();
+      return dbRoutines;
+    }
+    else {
+      Future<List> dbRoutines = RoutinesDatabase().getRoutines();
+      return dbRoutines;
+    }
   }
 }

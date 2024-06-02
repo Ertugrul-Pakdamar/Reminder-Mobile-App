@@ -33,12 +33,12 @@ class RoutinesDatabase {
     return result!.toList();
   }
 
-  Future<int?> updateCustomer(Routine routine) async {
+  Future<int?> updateRoutines(Routine routine) async {
     return await database?.update("Routines", routine.toMap(),
         where: "id = ?", whereArgs: [routine.id]);
   }
 
-  Future<int?> deleteCustomer(int id) async {
+  Future<int?> deleteRoutines(int id) async {
     return await database?.delete("Routines", where: 'id = ?', whereArgs: [id]);
   }
 }
