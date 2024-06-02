@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reminder_app/pages/routine_reminders/create_new_routine.dart';
 import 'package:reminder_app/pages/routine_reminders/routine.dart';
 import 'package:reminder_app/pages/routine_reminders/routine_page.dart';
+import 'package:reminder_app/pages/routine_reminders/routines_database.dart';
 
 class RoutineRemindersPage extends StatefulWidget {
   @override
@@ -108,5 +109,9 @@ class RoutineRemindersPageState extends State {
     setState(() {
       _routines.add(newRoutine);
     });
+  }
+
+  getRoutinesFromDatabase() async {
+
   }
 }

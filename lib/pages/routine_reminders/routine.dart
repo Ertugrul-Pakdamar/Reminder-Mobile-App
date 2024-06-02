@@ -18,4 +18,10 @@ class Routine{
     this.description = description;
     this.title = title;
   }
+
+  Map<String, dynamic> toMap() => {
+    "id": id,
+    "title": title,
+    "description": description,
+  };
 }
