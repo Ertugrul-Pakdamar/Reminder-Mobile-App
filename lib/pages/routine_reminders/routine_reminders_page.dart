@@ -66,8 +66,7 @@ class RoutineRemindersPageState extends State {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext) => RoutinePage(_routines[index])));
         },
-        child: Expanded(
-          child: Container(
+        child: Container(
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
             padding: EdgeInsets.only(left: 15, top: 10),
@@ -104,7 +103,6 @@ class RoutineRemindersPageState extends State {
               ),
             ),
           ),
-        ),
       ),
     );
   }

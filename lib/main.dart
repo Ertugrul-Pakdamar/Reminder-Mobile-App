@@ -4,7 +4,7 @@ import 'package:reminder_app/pages/main_screen.dart';
 void main() {
   runApp(
     MaterialApp(
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         home: MainApp()
     )
   );
