@@ -118,8 +118,8 @@ class RoutineRemindersPageState extends State {
   }
 
   getRoutines() async {
-    var productsFuture = routinesDb.getRoutines();
-    productsFuture.then((value) {
+    var routinesUpdated = routinesDb.getRoutines();
+    routinesUpdated.then((value) {
       setState(() {
         this._routines = value;
       });

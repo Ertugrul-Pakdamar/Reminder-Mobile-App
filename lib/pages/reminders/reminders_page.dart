@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reminder_app/pages/reminders/create_new_reminder.dart';
 import 'package:reminder_app/pages/reminders/reminder.dart';
+import 'package:reminder_app/pages/reminders/reminders_database.dart';
 
 class RemindersPage extends StatefulWidget {
   @override
@@ -8,7 +9,14 @@ class RemindersPage extends StatefulWidget {
 }
 
 class ReminderPageState extends State<RemindersPage> {
+  RemindersDatabase remindersDb = RemindersDatabase();
   List<Reminder> reminders = <Reminder>[];
+  int latestId = 0;
+
+  @override
+  void initState() {
+    getReminders();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +42,14 @@ class ReminderPageState extends State<RemindersPage> {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () => changeTaskCompleted(index),  // Düzeltildi
+                    onPressed: () => changeTaskCompleted(index),
                     icon: isReminderCompleted(index),
                   ),
-                  Text(reminders[index].text),
+                  Text(reminders[index].text,
+                    style: TextStyle(decoration: isTextLined(reminders[index].completed!)),),
                   Expanded(child: SizedBox()),
                   IconButton(
-                    onPressed: () {
-                      setState(() {
-                        reminders.removeAt(index);
-                      });
-                    },
+                    onPressed: () => deleteReminder(index),
                     icon: Icon(Icons.delete),
                   ),
                 ],
@@ -57,17 +62,17 @@ class ReminderPageState extends State<RemindersPage> {
   }
 
   createNewReminder() async {
-    Reminder newReminder = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => CreateNewReminder()),
-    );
-    setState(() {
-      reminders.add(newReminder);
-    });
+    bool result = await Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext) => CreateNewReminder(setLatestId())));
+    if (result != null) {
+      if (result) {
+        getReminders();
+      }
+    }
   }
 
   Icon isReminderCompleted(int index) {
-    if (reminders[index].completed) {
+    if (reminders[index].completed!) {
       return Icon(Icons.check_box_outlined);
     } else {
       return Icon(Icons.check_box_outline_blank);
@@ -75,8 +80,42 @@ class ReminderPageState extends State<RemindersPage> {
   }
 
   void changeTaskCompleted(int index) {
-    setState(() {
-      reminders[index].completed = !reminders[index].completed;  // Düzeltildi
+    reminders[index].completed = !reminders[index].completed!;
+    remindersDb.update(reminders[index]);
+    print(reminders[index].completed);
+    getReminders();
+  }
+
+  getReminders() async {
+    var remindersUpdated = remindersDb.getReminders();
+    remindersUpdated.then((value) {
+      setState(() {
+        this.reminders = value;
+      });
     });
+  }
+
+  deleteReminder(int index) {
+    remindersDb.delete(reminders[index].id);
+    getReminders();
+  }
+
+  setLatestId() {
+    if(reminders.isNotEmpty){
+      latestId = reminders.last.id + 1;
+    }
+    else {
+      latestId = 0;
+    }
+    return latestId;
+  }
+
+  isTextLined(bool isCompleted) {
+    if(isCompleted) {
+      return TextDecoration.lineThrough;
+    }
+    else {
+      return TextDecoration.none;
+    }
   }
 }
