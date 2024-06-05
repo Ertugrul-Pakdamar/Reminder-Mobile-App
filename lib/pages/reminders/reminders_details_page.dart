@@ -25,6 +25,7 @@ class RemindersDetailsPageState extends State {
 
   @override
   void initState() {
+    textController.text = reminder.text;
     getReminders();
   }
 
