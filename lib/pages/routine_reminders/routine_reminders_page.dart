@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reminder_app/pages/routine_reminders/create_new_routine.dart';
 import 'package:reminder_app/pages/routine_reminders/routine.dart';
-import 'package:reminder_app/pages/routine_reminders/routine_page.dart';
+import 'package:reminder_app/pages/routine_reminders/routine_details_page.dart';
 import 'package:reminder_app/pages/routine_reminders/routines_database.dart';
 
 class RoutineRemindersPage extends StatefulWidget {
@@ -64,45 +64,66 @@ class RoutineRemindersPageState extends State {
         ),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext) => RoutinePage(_routines[index])));
+              builder: (BuildContext) => RoutineDetailsPage(_routines[index])));
         },
         child: Container(
-            width: double.infinity,
-            margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            padding: EdgeInsets.only(left: 15, top: 10),
-            color: Colors.white.withOpacity(0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Row(
-                children: [
-                  Column(
+          width: double.infinity,
+          margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          padding: EdgeInsets.only(left: 10, top: 10),
+          color: Colors.white.withOpacity(0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
                     children: [
-                      Text(
-                        title,
-                        style: TextStyle(fontSize: 25),
-                        textAlign: TextAlign.left,
-                        maxLines: 1,
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 50,
+                            child: Text(
+                              title,
+                              style: TextStyle(fontSize: 25),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Expanded(child: SizedBox(), flex: 1,),
+                        ],
                       ),
-                      Text(
-                        description,
-                        style: TextStyle(fontSize: 20),
-                        textAlign: TextAlign.left,
-                        maxLines: 2,
-                      )
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 50,
+                            child: Text(
+                              description,
+                              style: TextStyle(fontSize: 20),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Expanded(child: SizedBox(), flex: 1,),
+                        ],
+                      ),
                     ],
                   ),
-                  Expanded(child: SizedBox()),
-                  IconButton(
-                    onPressed: () {
-                      routinesDb.delete(_routines[index].id!);
-                      getRoutines();
-                    },
-                    icon: Icon(Icons.delete),
-                  ),
-                ],
-              ),
+                ),
+                Expanded(child: SizedBox()),
+                IconButton(
+                  onPressed: () {
+                    routinesDb.delete(_routines[index].id!);
+                    getRoutines();
+                  },
+                  icon: Icon(Icons.delete),
+                ),
+              ],
             ),
           ),
+        ),
       ),
     );
   }
@@ -110,8 +131,8 @@ class RoutineRemindersPageState extends State {
   createNewRoutine() async {
     bool result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext) => CreateNewRoutine()));
-    if(result!=null) {
-      if(result) {
+    if (result != null) {
+      if (result) {
         getRoutines();
       }
     }

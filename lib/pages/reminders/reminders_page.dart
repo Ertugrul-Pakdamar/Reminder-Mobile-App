@@ -45,8 +45,13 @@ class ReminderPageState extends State<RemindersPage> {
                     onPressed: () => changeTaskCompleted(index),
                     icon: isReminderCompleted(index),
                   ),
-                  Text(reminders[index].text,
-                    style: TextStyle(decoration: isTextLined(reminders[index].completed!)),),
+                  Flexible(
+                    child: Text(reminders[index].text,
+                      style: TextStyle(decoration: isTextLined(reminders[index].completed!)),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   Expanded(child: SizedBox()),
                   IconButton(
                     onPressed: () => deleteReminder(index),
@@ -82,7 +87,6 @@ class ReminderPageState extends State<RemindersPage> {
   void changeTaskCompleted(int index) {
     reminders[index].completed = !reminders[index].completed!;
     remindersDb.update(reminders[index]);
-    print(reminders[index].completed);
     getReminders();
   }
 
