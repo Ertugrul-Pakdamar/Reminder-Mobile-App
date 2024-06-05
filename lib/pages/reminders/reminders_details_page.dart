@@ -3,15 +3,13 @@ import 'package:reminder_app/pages/reminders/reminder.dart';
 import 'package:reminder_app/pages/reminders/reminders_database.dart';
 
 class RemindersDetailsPage extends StatefulWidget {
-  late int reminderId;
-  late bool reminderCompleted;
-  RemindersDetailsPage(int reminderId, bool reminderCompleted) {
-    this.reminderId = reminderId;
-    this.reminderCompleted = reminderCompleted;
+  late Reminder reminder;
+  RemindersDetailsPage(Reminder reminder) {
+    this.reminder = reminder;
   }
 
   @override
-  State<StatefulWidget> createState() => RemindersDetailsPageState(reminderId);
+  State<StatefulWidget> createState() => RemindersDetailsPageState(reminder);
 }
 
 class RemindersDetailsPageState extends State {
@@ -19,12 +17,10 @@ class RemindersDetailsPageState extends State {
   Reminder newReminder = Reminder();
   List<Reminder> reminders = [];
   TextEditingController textController = TextEditingController();
-  late int reminderId;
-  late bool reminderCompleted;
+  late Reminder reminder;
 
-  RemindersDetailsPageState(int reminderId, bool reminderCompleted) {
-    this.reminderId = reminderId;
-    this.reminderCompleted = reminderCompleted;
+  RemindersDetailsPageState(Reminder reminder) {
+    this.reminder = reminder;
   }
 
   @override
@@ -40,8 +36,8 @@ class RemindersDetailsPageState extends State {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           newReminder.text = textController.text;
-          var result = await remindersDb
-              .update(Reminder.withInfo(reminderId, textController.text, reminderCompleted));
+          var result = await remindersDb.update(Reminder.withInfo(
+              reminder.id, textController.text, reminder.completed!));
           Navigator.pop(context, true);
         },
         backgroundColor: Colors.amberAccent,
@@ -55,7 +51,9 @@ class RemindersDetailsPageState extends State {
               keyboardType: TextInputType.multiline,
               maxLines: null,
               controller: textController,
-              decoration: InputDecoration(labelText: "Enter Title"),
+              decoration: InputDecoration(
+                labelText: "Enter Title",
+              ),
             ),
           ),
         ],

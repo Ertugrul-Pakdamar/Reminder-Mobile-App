@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reminder_app/pages/reminders/create_new_reminder.dart';
 import 'package:reminder_app/pages/reminders/reminder.dart';
 import 'package:reminder_app/pages/reminders/reminders_database.dart';
+import 'package:reminder_app/pages/reminders/reminders_details_page.dart';
 
 class RemindersPage extends StatefulWidget {
   @override
@@ -37,27 +38,30 @@ class ReminderPageState extends State<RemindersPage> {
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              width: double.infinity,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => changeTaskCompleted(index),
-                    icon: isReminderCompleted(index),
-                  ),
-                  Flexible(
-                    child: Text(reminders[index].text,
-                      style: TextStyle(decoration: isTextLined(reminders[index].completed!)),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+            return ElevatedButton(
+              onPressed: () => goToReminderDetails(reminders[index]),
+              child: SizedBox(
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => changeTaskCompleted(index),
+                      icon: isReminderCompleted(index),
                     ),
-                  ),
-                  Expanded(child: SizedBox()),
-                  IconButton(
-                    onPressed: () => deleteReminder(index),
-                    icon: Icon(Icons.delete),
-                  ),
-                ],
+                    Flexible(
+                      child: Text(reminders[index].text,
+                        style: TextStyle(decoration: isTextLined(reminders[index].completed!)),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Expanded(child: SizedBox()),
+                    IconButton(
+                      onPressed: () => deleteReminder(index),
+                      icon: Icon(Icons.delete),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -120,6 +124,17 @@ class ReminderPageState extends State<RemindersPage> {
     }
     else {
       return TextDecoration.none;
+    }
+  }
+
+  goToReminderDetails(Reminder reminder) async {
+    bool result = await Navigator.push(context,
+        MaterialPageRoute(
+            builder: (BuildContext) => RemindersDetailsPage(reminder)));
+    if (result != null) {
+      if (result) {
+        getReminders();
+      }
     }
   }
 }
