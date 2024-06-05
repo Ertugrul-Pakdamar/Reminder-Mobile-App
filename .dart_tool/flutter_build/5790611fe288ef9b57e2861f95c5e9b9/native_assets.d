@@ -1,0 +1,1 @@
+ D:\\YazilimveTasarim\\flutter\\Ogrenme\\reminder_app\\.dart_tool\\flutter_build\\5790611fe288ef9b57e2861f95c5e9b9\\native_assets.yaml: 

@@ -1,0 +1,4 @@
+#Wed Jun 05 21:16:56 TRT 2024
+base.0=D\:\\YazilimveTasarim\\flutter\\Ogrenme\\reminder_app\\reminder\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
