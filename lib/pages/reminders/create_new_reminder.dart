@@ -32,7 +32,7 @@ class CreateNewReminderState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("New Reminder"), backgroundColor: Colors.lightBlue),
+          title: Text("New Reminder"), backgroundColor: Colors.amber),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           newReminder.text = textController.text;

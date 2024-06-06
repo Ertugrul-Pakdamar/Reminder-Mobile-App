@@ -26,7 +26,7 @@ class RoutineDetailsPageState extends State {
           "${routine.title} Routine",
           overflow: TextOverflow.ellipsis,
         ),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.amber,
       ),
       body: SizedBox(
         child: SizedBox(
@@ -38,12 +38,11 @@ class RoutineDetailsPageState extends State {
                 Row(
                   children: [
                     Expanded(
-                      flex: 50,
+                      flex: 100,
                       child: Text(routine.title,
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            overflow: TextOverflow.ellipsis,
                           )),
                     ),
                     Expanded(child: SizedBox(), flex: 1,),

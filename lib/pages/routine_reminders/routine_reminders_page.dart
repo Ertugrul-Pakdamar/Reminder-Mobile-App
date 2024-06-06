@@ -23,7 +23,7 @@ class RoutineRemindersPageState extends State {
     return Scaffold(
       appBar: AppBar(
         title: Text("Routine Reminders"),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.amber,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewRoutine,
@@ -76,12 +76,13 @@ class RoutineRemindersPageState extends State {
             child: Row(
               children: [
                 Expanded(
+                  flex: 100,
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Expanded(
-                            flex: 50,
+                            flex: 100,
                             child: Text(
                               title,
                               style: TextStyle(fontSize: 25),
@@ -98,7 +99,7 @@ class RoutineRemindersPageState extends State {
                       Row(
                         children: [
                           Expanded(
-                            flex: 50,
+                            flex: 100,
                             child: Text(
                               description,
                               style: TextStyle(fontSize: 20),
@@ -112,7 +113,7 @@ class RoutineRemindersPageState extends State {
                     ],
                   ),
                 ),
-                Expanded(child: SizedBox()),
+                Expanded(child: SizedBox(), flex: 1,),
                 IconButton(
                   onPressed: () {
                     routinesDb.delete(_routines[index].id!);

@@ -18,7 +18,7 @@ class CreateNewRoutineState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          AppBar(title: Text("New Routine"), backgroundColor: Colors.lightBlue),
+          AppBar(title: Text("New Routine"), backgroundColor: Colors.amber),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           newRoutine.title = titleController.text;

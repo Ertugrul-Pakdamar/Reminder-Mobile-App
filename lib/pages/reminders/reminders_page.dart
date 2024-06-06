@@ -24,7 +24,7 @@ class ReminderPageState extends State<RemindersPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Reminders"),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.amber,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewReminder,
@@ -38,29 +38,37 @@ class ReminderPageState extends State<RemindersPage> {
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
-            return ElevatedButton(
-              onPressed: () => goToReminderDetails(reminders[index]),
-              child: SizedBox(
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => changeTaskCompleted(index),
-                      icon: isReminderCompleted(index),
+            return Padding(
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: ElevatedButton(
+                onPressed: () => goToReminderDetails(reminders[index]),
+                child: Container(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => changeTaskCompleted(index),
+                          icon: isReminderCompleted(index),
+                        ),
+                        Expanded(
+                          child: Text(
+                            reminders[index].text,
+                            style: TextStyle(
+                                decoration:
+                                    isTextLined(reminders[index].completed!)),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Expanded(child: SizedBox()),
+                        IconButton(
+                          onPressed: () => deleteReminder(index),
+                          icon: Icon(Icons.delete),
+                        ),
+                      ],
                     ),
-                    Flexible(
-                      child: Text(reminders[index].text,
-                        style: TextStyle(decoration: isTextLined(reminders[index].completed!)),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Expanded(child: SizedBox()),
-                    IconButton(
-                      onPressed: () => deleteReminder(index),
-                      icon: Icon(Icons.delete),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             );
@@ -71,8 +79,10 @@ class ReminderPageState extends State<RemindersPage> {
   }
 
   createNewReminder() async {
-    bool result = await Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext) => CreateNewReminder(setLatestId())));
+    bool result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext) => CreateNewReminder(setLatestId())));
     if (result != null) {
       if (result) {
         getReminders();
@@ -109,26 +119,25 @@ class ReminderPageState extends State<RemindersPage> {
   }
 
   setLatestId() {
-    if(reminders.isNotEmpty){
+    if (reminders.isNotEmpty) {
       latestId = reminders.last.id + 1;
-    }
-    else {
+    } else {
       latestId = 0;
     }
     return latestId;
   }
 
   isTextLined(bool isCompleted) {
-    if(isCompleted) {
+    if (isCompleted) {
       return TextDecoration.lineThrough;
-    }
-    else {
+    } else {
       return TextDecoration.none;
     }
   }
 
   goToReminderDetails(Reminder reminder) async {
-    bool result = await Navigator.push(context,
+    bool result = await Navigator.push(
+        context,
         MaterialPageRoute(
             builder: (BuildContext) => RemindersDetailsPage(reminder)));
     if (result != null) {

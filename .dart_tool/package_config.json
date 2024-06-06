@@ -50,6 +50,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_analog_clock",
+      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_analog_clock-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
@@ -230,7 +236,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-06-02T06:13:07.967303Z",
+  "generated": "2024-06-06T13:41:36.930254Z",
   "generator": "pub",
   "generatorVersion": "3.2.5"
 }
