@@ -51,17 +51,17 @@ class MainAppState extends State {
       selectedIndex: currentPageIndex,
       destinations: const <Widget>[
         NavigationDestination(
-          selectedIcon: Icon(Icons.home),
+          selectedIcon: Icon(Icons.home, color: Color(0xff614151)),
           icon: Icon(Icons.home_outlined),
           label: 'Home',
         ),
         NavigationDestination(
-          selectedIcon: Icon(Icons.history),
+          selectedIcon: Icon(Icons.history, color: Color(0xff614151)),
           icon: Icon(Icons.history_outlined),
           label: 'Routines',
         ),
         NavigationDestination(
-          selectedIcon: Icon(Icons.notifications),
+          selectedIcon: Icon(Icons.notifications, color: Color(0xff614151)),
           icon: Icon(Icons.notifications_outlined),
           label: 'Reminders',
         ),
@@ -81,7 +81,7 @@ class MainAppState extends State {
             child: AC.AnalogClock.dark(
               dateTime: DateTime.now(),
               dialColor: Colors.white,
-              markingColor: Colors.black,
+              markingColor: Color(0xff614151),
               markingWidthFactor: 1.2,
               markingRadiusFactor: 0.95,
               hourNumbers: const [
@@ -104,7 +104,7 @@ class MainAppState extends State {
               hourHandLengthFactor: 0.7,
               minuteHandColor: Colors.black,
               minuteHandLengthFactor: 0.7,
-              secondHandColor: Colors.black,
+              secondHandColor: Colors.red,
               secondHandLengthFactor: 0.7,
               centerPointColor: null,
             ),

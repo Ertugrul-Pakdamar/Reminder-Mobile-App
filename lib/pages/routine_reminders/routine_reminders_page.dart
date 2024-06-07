@@ -119,7 +119,7 @@ class RoutineRemindersPageState extends State {
                     routinesDb.delete(_routines[index].id!);
                     getRoutines();
                   },
-                  icon: Icon(Icons.delete),
+                  icon: Icon(Icons.delete, color: Color(0xff614151)),
                 ),
               ],
             ),

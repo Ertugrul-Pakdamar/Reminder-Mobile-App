@@ -67,7 +67,7 @@ class ReminderPageState extends State<RemindersPage> {
                               Expanded(child: SizedBox()),
                               IconButton(
                                 onPressed: () => deleteReminder(index),
-                                icon: Icon(Icons.delete),
+                                icon: Icon(Icons.delete, color: Color(0xff614151)),
                               ),
                             ],
                           ),
@@ -98,9 +98,9 @@ class ReminderPageState extends State<RemindersPage> {
 
   Icon isReminderCompleted(int index) {
     if (reminders[index].completed!) {
-      return Icon(Icons.check_box_outlined);
+      return Icon(Icons.check_box_outlined, color: Color(0xff614151));
     } else {
-      return Icon(Icons.check_box_outline_blank);
+      return Icon(Icons.check_box_outline_blank, color: Color(0xff614151));
     }
   }
 

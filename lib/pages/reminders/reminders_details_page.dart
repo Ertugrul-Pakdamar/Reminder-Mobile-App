@@ -33,7 +33,7 @@ class RemindersDetailsPageState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Reminder Details"), backgroundColor: Colors.lightBlue),
+          title: Text("Reminder Details"), backgroundColor: Colors.amber),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           newReminder.text = textController.text;
@@ -42,7 +42,7 @@ class RemindersDetailsPageState extends State {
           Navigator.pop(context, true);
         },
         backgroundColor: Colors.amberAccent,
-        child: Icon(Icons.save),
+        child: Icon(Icons.save, color: Color(0xff614151)),
       ),
       body: Column(
         children: [

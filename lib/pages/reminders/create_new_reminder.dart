@@ -42,7 +42,7 @@ class CreateNewReminderState extends State {
           Navigator.pop(context, true);
         },
         backgroundColor: Colors.amberAccent,
-        child: Icon(Icons.save),
+        child: Icon(Icons.save, color: Color(0xff614151)),
       ),
       body: Column(
         children: [
