@@ -1,4 +1,0 @@
-#Fri Jun 07 10:59:42 TRT 2024
-base.0=D\:\\YazilimveTasarim\\flutter\\Ogrenme\\reminder_app\\reminder\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

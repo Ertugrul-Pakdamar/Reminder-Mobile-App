@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.reminder_app-mergeDebugResources-9:/values-v16/values-v16.xml",
+            "outputFile": "com.example.reminder_app-mergeDebugResources-13:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vidar\\.gradle\\caches\\transforms-3\\87e24ee8689e985fbc596f6976aab002\\transformed\\core-1.6.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\vidar\\.gradle\\caches\\transforms-3\\59d5a8a5fecbd773bb1641e662d9fb68\\transformed\\core-1.10.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

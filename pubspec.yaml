@@ -13,6 +13,8 @@ dependencies:
   path_provider:
   flutter_analog_clock: ^1.0.3
   one_clock: ^2.0.1
+  http:
+  location: ^5.0.0
 
 dev_dependencies:
   flutter_test:
