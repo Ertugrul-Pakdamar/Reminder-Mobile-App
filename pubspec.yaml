@@ -12,6 +12,7 @@ dependencies:
   sqflite:
   path_provider:
   flutter_analog_clock: ^1.0.3
+  one_clock: ^2.0.1
 
 dev_dependencies:
   flutter_test:

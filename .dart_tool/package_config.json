@@ -68,6 +68,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.19.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "lints",
       "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
@@ -88,6 +94,12 @@
     {
       "name": "meta",
       "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "one_clock",
+      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/one_clock-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -236,7 +248,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-06-06T13:41:36.930254Z",
+  "generated": "2024-06-07T07:26:33.151365Z",
   "generator": "pub",
   "generatorVersion": "3.2.5"
 }

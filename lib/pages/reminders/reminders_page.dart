@@ -31,49 +31,55 @@ class ReminderPageState extends State<RemindersPage> {
         child: Icon(Icons.add),
         backgroundColor: Colors.amberAccent,
       ),
-      body: SizedBox(
-        height: 525.0,
-        child: ListView.builder(
-          itemCount: reminders.length,
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: ElevatedButton(
-                onPressed: () => goToReminderDetails(reminders[index]),
-                child: Container(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () => changeTaskCompleted(index),
-                          icon: isReminderCompleted(index),
-                        ),
-                        Expanded(
-                          child: Text(
-                            reminders[index].text,
-                            style: TextStyle(
-                                decoration:
-                                    isTextLined(reminders[index].completed!)),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+      body: Column(
+        children: [
+          Expanded(
+            child: SizedBox(
+              height: 525.0,
+              child: ListView.builder(
+                itemCount: reminders.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: ElevatedButton(
+                      onPressed: () => goToReminderDetails(reminders[index]),
+                      child: Container(
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () => changeTaskCompleted(index),
+                                icon: isReminderCompleted(index),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  reminders[index].text,
+                                  style: TextStyle(
+                                      decoration:
+                                          isTextLined(reminders[index].completed!)),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Expanded(child: SizedBox()),
+                              IconButton(
+                                onPressed: () => deleteReminder(index),
+                                icon: Icon(Icons.delete),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(child: SizedBox()),
-                        IconButton(
-                          onPressed: () => deleteReminder(index),
-                          icon: Icon(Icons.delete),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
-            );
-          },
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
