@@ -123,10 +123,7 @@ class MainAppState extends State {
         ),
         Expanded(
           child: Center(
-            child: Card(
-                color: Colors.white.withOpacity(0),
-                shadowColor: Colors.white.withOpacity(0),
-                child: DC.DigitalClock(
+            child: DC.DigitalClock(
                     showSeconds: true,
                     isLive: true,
                     padding: EdgeInsets.all(15),
@@ -136,7 +133,7 @@ class MainAppState extends State {
                         shape: BoxShape.rectangle,
                         borderRadius:
                         BorderRadius.all(Radius.circular(15))),
-                    datetime: DateTime.now())),
+                    datetime: DateTime.now())
           ),
         ),
         Expanded(child: SizedBox()),
