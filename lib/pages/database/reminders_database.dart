@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:reminder_app/pages/reminders/reminder.dart';
+import 'package:reminder_app/pages/models/reminder.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 

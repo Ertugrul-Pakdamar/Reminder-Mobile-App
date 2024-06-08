@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reminder_app/pages/reminders/reminder.dart';
-import 'package:reminder_app/pages/reminders/reminders_database.dart';
+import 'package:reminder_app/pages/database/reminders_database.dart';
+import 'package:reminder_app/pages/models/reminder.dart';
 
 class RemindersDetailsPage extends StatefulWidget {
   late Reminder reminder;

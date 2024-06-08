@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reminder_app/pages/reminders/reminder.dart';
-import 'package:reminder_app/pages/routine_reminders/routine.dart';
+import 'package:reminder_app/pages/models/routine.dart';
 
 class RoutineDetailsPage extends StatefulWidget {
   Routine _routine = Routine();
@@ -35,26 +34,35 @@ class RoutineDetailsPageState extends State {
             margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 100,
-                      child: Text(routine.title,
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
-                    Expanded(child: SizedBox(), flex: 1,),
-                  ],
+                Expanded(
+                  flex: 25,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 100,
+                        child: SingleChildScrollView(
+                          child: Text(routine.title,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                        ),
+                      ),
+                      Expanded(child: SizedBox(), flex: 1,),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 400,
-                  width: double.infinity,
-                  child: SingleChildScrollView(
+                Expanded(
+                  flex: 100,
+                  child: SizedBox(
+                    height: 400,
+                    width: double.infinity,
+                    child: SingleChildScrollView(
                       child: Text(
-                    routine.description,
-                  )),
+                        routine.description,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

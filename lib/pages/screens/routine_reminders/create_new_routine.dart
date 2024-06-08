@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reminder_app/pages/routine_reminders/routine.dart';
-import 'package:reminder_app/pages/routine_reminders/routine_reminders_page.dart';
-import 'package:reminder_app/pages/routine_reminders/routines_database.dart';
+import 'package:reminder_app/pages/database/routines_database.dart';
+import 'package:reminder_app/pages/models/routine.dart';
 
 class CreateNewRoutine extends StatefulWidget {
   @override

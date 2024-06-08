@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reminder_app/pages/reminders/reminders_page.dart';
-import 'package:reminder_app/pages/routine_reminders/routine_reminders_page.dart';
+import 'package:reminder_app/pages/screens/reminders/reminders_page.dart';
+import 'package:reminder_app/pages/screens/routine_reminders/routine_reminders_page.dart';
 import 'clock_widgets.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:reminder_app/pages/reminders/create_new_reminder.dart';
-import 'package:reminder_app/pages/reminders/reminder.dart';
-import 'package:reminder_app/pages/reminders/reminders_database.dart';
-import 'package:reminder_app/pages/reminders/reminders_details_page.dart';
+import 'package:reminder_app/pages/database/reminders_database.dart';
+import 'package:reminder_app/pages/models/reminder.dart';
+import 'package:reminder_app/pages/screens/reminders/create_new_reminder.dart';
+import 'package:reminder_app/pages/screens/reminders/reminders_details_page.dart';
 
 class RemindersPage extends StatefulWidget {
   @override
