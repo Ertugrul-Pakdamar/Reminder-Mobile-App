@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:reminder_app/pages/apis/weather_api.dart';
+import 'package:reminder_app/pages/screens/main_screen/weather_widget.dart';
 import 'package:reminder_app/pages/screens/reminders/reminders_page.dart';
 import 'package:reminder_app/pages/screens/routine_reminders/routine_reminders_page.dart';
 import 'clock_widgets.dart';
@@ -29,12 +31,36 @@ class MainAppState extends State {
         SizedBox(
           height: 10,
         ),
-        welcomeCardWidget(),
+        Row(
+          children: [
+            Expanded(child: SizedBox()),
+            welcomeCardWidget(),
+            Expanded(child: SizedBox()),
+          ],
+        ),
         SizedBox(
           height: 10,
         ),
-        ClockWidgets().analogClockWidget(),
-        ClockWidgets().digitalClockWidget(),
+        Row(
+          children: [
+            SizedBox(width: 10,),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  ClockWidgets().analogClockWidget(),
+                  ClockWidgets().digitalClockWidget(),
+                ],
+              ),
+            ),
+            Expanded(child: SizedBox()),
+            WeatherWidget(),
+            SizedBox(width: 10,),
+          ],
+        ),
         Expanded(child: SizedBox()),
       ],
     );

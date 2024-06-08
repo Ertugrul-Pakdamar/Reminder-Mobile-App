@@ -68,12 +68,6 @@
       "languageVersion": "3.2"
     },
     {
-      "name": "flutter_web_plugins",
-      "rootUri": "file:///C:/src/flutter/packages/flutter_web_plugins",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
-    },
-    {
       "name": "http",
       "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.2.0",
       "packageUri": "lib/",
@@ -92,34 +86,10 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "js",
-      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "lints",
       "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
-    },
-    {
-      "name": "location",
-      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/location-5.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "location_platform_interface",
-      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/location_platform_interface-3.1.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "location_web",
-      "rootUri": "file:///C:/Users/vidar/AppData/Local/Pub/Cache/hosted/pub.dev/location_web-4.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
     },
     {
       "name": "matcher",
@@ -296,7 +266,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-06-07T13:29:22.437365Z",
+  "generated": "2024-06-08T11:55:54.084845Z",
   "generator": "pub",
   "generatorVersion": "3.2.5"
 }
