@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:reminder_app/pages/apis/weather_api.dart';
 import 'package:reminder_app/pages/models/weather.dart';
